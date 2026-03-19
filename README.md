@@ -1,36 +1,41 @@
 # EPSO
 
-Single-instance runner for two DCKP benchmark sets.
-
 Compiled on Linux x86_64 with CMake/make and GNU C++ 11.5.0.
 
-## Run
+The program `EPSO` contains three input parameters: `InsName Seed InsType`.
 
-Keep the executable and the benchmark instance files in the same folder (run from that folder).
+1) `InsName`: the name of each instance tested.
+2) `Seed`: the random seed.
+3) `InsType`: the type of each instance tested. There are only two candidate values:
+   `1` for the Set I of 100 DCKP instances, `2` for the Set II of 6240 DCKP instances.
+
+The cut-off time is computed by:
+
+`T = clamp(1.5 * n, 60, 1000)`
+
+where `n` is the number of items and `clamp(x, a, b) = max(a, min(x, b))`.
+
+Keep the program and the benchmark instances in the same folder.
+
+Then the job can be submitted as follows:
 
 ```bash
 ./EPSO InsName Seed InsType
 ```
 
-- `InsName`: instance filename (no need to provide full path).
-- `Seed`: seed input (printed as provided).
-- `InsType`: `"1"` for Set I (100 instances), `"2"` for Set II (6240 instances).
+For example:
 
-Cut-off time formula (seconds), where `n` is the number of items:
-
-`T = clamp(1.5 * n, 60, 1000)`
-
-(`clamp(x, a, b) = max(a, min(x, b))`)
-
-## Output
-
-The program creates exactly one output file in the current folder:
-
-`<InsName>_<time>_<result>`
-
-File content format:
-
+```bash
+./EPSO 1I1 0 1
 ```
+
+The results are stored in a text file named:
+
+`InsName_time_result`
+
+The file content format is as follows:
+
+```text
 Instance: <InsName>
 BestProfit: <profit>
 BestWeight: <weight>
@@ -40,9 +45,3 @@ ItemIndexBase: <0 or 1>
 Comb0: [ ... ] Profit=<profit> Weight=<weight>
 ...
 ```
-
-## Reproducibility
-
-For the strongest reproducibility, build and run on the same platform/toolchain.
-
-Different platforms or standard library implementations may produce different search paths and final results, even with the same input seed, because the program depends on floating-point calculations and C++ random distributions whose exact behavior is not guaranteed to be identical across toolchains.

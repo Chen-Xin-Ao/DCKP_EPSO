@@ -11,7 +11,9 @@ The program `EPSO` contains three input parameters: `InsName Seed InsType`.
 
 The cut-off time is computed by:
 
-`T = clamp(1.5 * n, 60, 1000)`
+`T = clamp(1.5 * n, 60, 1000)` for Set I
+
+`T = clamp(1.5 * n, 60, 600)` for Set II
 
 where `n` is the number of items and `clamp(x, a, b) = max(a, min(x, b))`.
 

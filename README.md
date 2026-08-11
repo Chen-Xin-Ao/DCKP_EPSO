@@ -1,43 +1,46 @@
-# EPSO
+EPSO
 
-Compiled on Linux x86_64 with CMake/make and GNU C++ 11.5.0.
+EPSO is an enhanced particle swarm optimization algorithm for the disjunctively constrained knapsack problem (DCKP).
 
-The program `EPSO` contains three input parameters: `InsName Seed InsType`.
+The executable was compiled on Linux x86_64 using CMake/make and GNU C++ 11.5.0. The corresponding C++ source code is provided in DCKP_EPSO_Program.zip.
 
-1) `InsName`: the name of each instance tested.
-2) `Seed`: the random seed.
-3) `InsType`: the type of each instance tested. There are only two candidate values:
-   `1` for the Set I of 100 DCKP instances, `2` for the Set II of 6240 DCKP instances.
+Usage
 
-The cut-off time is computed by:
+The program EPSO requires three input parameters:
 
-`T = clamp(1.5 * n, 60, 1000)` for Set I
+InsName Seed InsType
 
-`T = clamp(1.5 * n, 60, 600)` for Set II
+InsName: name or path of the benchmark instance.
+Seed: random seed used for the run.
+InsType: benchmark-set identifier, where 1 denotes Set I (100 instances) and 2 denotes Set II (6240 instances).
 
-where `n` is the number of items and `clamp(x, a, b) = max(a, min(x, b))`.
+The cutoff time is
 
-Keep the program and the benchmark instances in the same folder.
+T = min(1.5 * n, 1000) seconds for Set I,
 
-Then the job can be submitted as follows:
+T = min(1.5 * n, 600) seconds for Set II,
 
-```bash
+where n is the number of items.
+
+The program can be executed as:
+
 ./EPSO InsName Seed InsType
-```
 
 For example:
 
-```bash
-./EPSO 1I1 0 1
-```
+./EPSO 2I2 0 1
+./EPSO BPPC_1_0_1.txt_0.1 0 2
 
-The results are stored in a text file named:
+The two instance files 2I2 and BPPC_1_0_1.txt_0.1 are included as examples for Set I and Set II, respectively.
 
-`InsName_time_result`
+Output
 
-The file content format is as follows:
+The result is written to a text file named
 
-```text
+InsName_time_result
+
+with the following information:
+
 Instance: <InsName>
 BestProfit: <profit>
 BestWeight: <weight>
@@ -46,4 +49,14 @@ All best combinations (same profit):
 ItemIndexBase: <0 or 1>
 Comb0: [ ... ] Profit=<profit> Weight=<weight>
 ...
-```
+Source code ：DCKP_EPSO_Program.zip
+
+
+
+EPSO_DCKP6340sol_certificates.zip contains the released solution certificates for the benchmark instances.
+
+epso_certificate_validator.zip provides the validation program for independently checking the objective values, total weights, and conflict feasibility of the released solutions.
+
+License
+
+The source code is released under the MIT License.

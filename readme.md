@@ -60,6 +60,7 @@ ItemIndexBase: <0 or 1>
 Comb0: [ ... ] Profit=<profit> Weight=<weight>
 ...
 ```
+`where time denotes the elapsed time when the reported best solution was first reached.`
 
 ## Source Code
 

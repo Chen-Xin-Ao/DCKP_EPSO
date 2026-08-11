@@ -45,7 +45,7 @@ The two instance files `2I2` and `BPPC_1_0_1.txt_0.1` are included as examples f
 The result is written to a text file named:
 
 ```text
-InsName_time_result
+<InsName>_<time>_<BestProfit>
 ```
 
 with the following information:
@@ -71,7 +71,7 @@ DCKP_EPSO_Program.zip
 
 ## Solution Certificates
 
-`EPSO_DCKP6340sol_certificates.zip` contains the released solution certificates for the benchmark instances.
+`EPSO_DCKP6340sol_certificates.zip` contains the solution certificates released by EPSO for the benchmark instances.
 
 `epso_certificate_validator.zip` provides the validation program for independently checking the objective values, total weights, and conflict feasibility of the released solutions.
 

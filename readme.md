@@ -64,7 +64,7 @@ Comb0: [ ... ] Profit=<profit> Weight=<weight>
 
 ## Source Code
 
-The C++ source code is provided in:
+The C++ source core code is provided in:
 
 ```text
 DCKP_EPSO_Program.zip
